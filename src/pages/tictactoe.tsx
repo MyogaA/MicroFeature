@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { Box, Button, Center, Text, VStack } from '@chakra-ui/react';
+import { Box, Button, Text, VStack } from '@chakra-ui/react';
 import { RepeatIcon } from '@chakra-ui/icons';
 import { FaArrowLeft } from 'react-icons/fa'; 
 import { Link } from 'react-router-dom';

@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import { useState, useEffect } from 'react';
 import { Flex, Button, Image, Spinner,Box } from "@chakra-ui/react";
 import axios from 'axios';
 import { FaArrowLeft } from 'react-icons/fa'; 
