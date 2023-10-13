@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { Box, Button, Input, Modal, ModalBody, ModalCloseButton, ModalContent, ModalHeader, ModalOverlay, Text, useDisclosure } from '@chakra-ui/react';
-
+import { FaArrowLeft } from 'react-icons/fa'; 
+import { Link } from 'react-router-dom';
 const WordScrambleGame: React.FC = () => {
   const { isOpen, onOpen, onClose } = useDisclosure();
   const [fruits] = useState([
@@ -19,6 +20,7 @@ const WordScrambleGame: React.FC = () => {
     "gooseberry",
     "grape",
     "mango",
+    "nectarine",
   ]);
   const [currentFruitIndex, setCurrentFruitIndex] = useState(0);
   const [scrambledWord, setScrambledWord] = useState('');
@@ -66,46 +68,49 @@ const WordScrambleGame: React.FC = () => {
     }
   };
   return (
-    <Box
+    <><Box>
+      <Link to="/">
+        <FaArrowLeft size={24} color="white" style={{ position: 'absolute', top: '10px', left: '10px', cursor: 'pointer' }} />
+      </Link>
+    </Box><Box
       display="flex"
       justifyContent="center"
       bgImg="https://wallpapersmug.com/download/1440x900/ba787c/black-dark-cubes-abstract.jpg"
       alignItems="center"
-      height="100vh" 
-      boxShadow="0 4px 8px 0 rgba(0,0,0,0.2)" 
+      height="100vh"
+      boxShadow="0 4px 8px 0 rgba(0,0,0,0.2)"
       padding="16px"
     >
-      <Box
-        width="400px" 
-        padding="16px"
-        backgroundColor="white"
-        borderRadius="8px"
-      >
-        <h1>Word Scramble Game</h1>
-        <Text>Score: {score}</Text>
-        <Text>Unscramble this word: {scrambledWord}</Text>
-        <Input
-          placeholder="Your answer"
-          value={userAnswer}
-          onChange={(e) => setUserAnswer(e.target.value)}
-        />
-        <Button _hover={{
-              backgroundColor: "green.500",
-              color: "black",
-            }}colorScheme="teal" mt="10px" variant="outline" color="green" onClick={checkAnswer}>Check Answer</Button>
-      </Box>
+        <Box
+          width="400px"
+          padding="16px"
+          backgroundColor="white"
+          borderRadius="8px"
+        >
+          <h1>Word Scramble Game</h1>
+          <Text>Score: {score}</Text>
+          <Text>Unscramble this word: {scrambledWord}</Text>
+          <Input
+            placeholder="Your answer"
+            value={userAnswer}
+            onChange={(e) => setUserAnswer(e.target.value)} />
+          <Button _hover={{
+            backgroundColor: "green.500",
+            color: "black",
+          }} colorScheme="teal" mt="10px" variant="outline" color="green" onClick={checkAnswer}>Check Answer</Button>
+        </Box>
 
-      <Modal isOpen={isOpen} onClose={onClose}>
-        <ModalOverlay />
-        <ModalContent>
-          <ModalHeader>Wrong Answer</ModalHeader>
-          <ModalCloseButton />
-          <ModalBody>
-            <Text>Your answer is incorrect. You have {3 - wrongAttempts} attempts left.</Text>
-          </ModalBody>
-        </ModalContent>
-      </Modal>
-    </Box>
+        <Modal isOpen={isOpen} onClose={onClose}>
+          <ModalOverlay />
+          <ModalContent>
+            <ModalHeader>Wrong Answer</ModalHeader>
+            <ModalCloseButton />
+            <ModalBody>
+              <Text>Your answer is incorrect. You have {3 - wrongAttempts} attempts left.</Text>
+            </ModalBody>
+          </ModalContent>
+        </Modal>
+      </Box></>
   );
 };
 

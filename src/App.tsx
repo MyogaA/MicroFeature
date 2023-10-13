@@ -1,19 +1,25 @@
-import { ChakraProvider, CSSReset, extendTheme, ThemeConfig, theme } from '@chakra-ui/react';
+import { ChakraProvider, CSSReset } from '@chakra-ui/react';
 import WordScrambleGame from './pages/wordSramble';
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom'; // Gunakan Routes
 
-const customTheme = extendTheme({
-  config: {
-    initialColorMode: 'light',
-  },
-});
+import CountdownTimer from './pages/countdown';
+import Tictactoe from './pages/tictactoe';
+import Home from './home';
+import MemeGenerator from './pages/memeGenerator';
 
 function App() {
   return (
-    <ChakraProvider theme={customTheme}>
+    <ChakraProvider>
       <CSSReset />
-      <div className="App">
-        <WordScrambleGame />
-      </div>
+      <Router>
+        <Routes> {/* Gunakan Routes di sini */}
+          <Route path="/" element={<Home />} />
+          <Route path="/countdown" element={<CountdownTimer />} />
+          <Route path="/tictactoe" element={<Tictactoe />} />
+          <Route path="/wordSramble" element={<WordScrambleGame />} />
+          <Route path="/memeGenerator" element={<MemeGenerator />} />
+        </Routes>
+      </Router>
     </ChakraProvider>
   );
 }
